@@ -5,4 +5,4 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: ls
+      - run: ./oaats.sh
