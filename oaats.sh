@@ -11,13 +11,18 @@ export OOATS_VCS_TYPE=$(echo $CIRCLE_BUILD_URL | grep / | cut -d/ -f4-6 | cut -d
 export OOATS_USERNAME=$(echo $CIRCLE_BUILD_URL | grep / | cut -d/ -f4-6 | cut -d/ -f2)
 export OOATS_PROJECT=$(echo $CIRCLE_BUILD_URL | grep / | cut -d/ -f4-6 | cut -d/ -f3)
 
-if [[ $OOATS_VCS_TYPE == 'gh' ]] ; then 
+if [ $OOATS_VCS_TYPE -eq 'gh' ] ; then 
     export OOATS_VCS_TYPE=github 
 fi
 
-if [[ $OOATS_VCS_TYPE == 'bb' ]] ; then 
+if [ $OOATS_VCS_TYPE -eq 'bb' ] ; then 
     export OOATS_VCS_TYPE=bitbucket 
 fi
+
+export $OOATS_VCS_TYPE
+export $OOATS_USERNAME
+export $OOATS_PROJECT
+export $NEXT_BUILD_DONE
 
 until [ $NEXT_BUILD_DONE -eq 1];
 do
