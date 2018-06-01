@@ -27,9 +27,8 @@ echo $NEXT_BUILD_DONE
 until [ $NEXT_BUILD_DONE -eq 1 ];
 do
     BUILDS=$(curl -u ${OOATS_API_KEY}: https://circleci.com/api/v1.1/project/${OOATS_VCS_TYPE}/${OOATS_USERNAME}/${OOATS_PROJECT})
-    echo $BUILDS
     $BUILDS | jq -c -r ".[] | {build_num: .build_num, status: .status}"
 
-    sleep 10;
+    sleep 25;
 done;
 echo 'Ready!';
