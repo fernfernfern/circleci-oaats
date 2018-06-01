@@ -1,7 +1,7 @@
 #!/bin/sh
 echo 'only one at a time'
 
-sudo apt-get install curl jq cut grep -y
+sudo apt-get install curl jq grep -y
 
 #This variable needs to be set in the build and look like:
 #CIRCLE_BUILD_URL="https://circleci.com/gh/fernfernfern/jest-puppeteer-example/6"
@@ -27,7 +27,7 @@ echo $NEXT_BUILD_DONE
 until [ $NEXT_BUILD_DONE -eq 1 ];
 do
     BUILDS=$(curl -u ${OOATS_API_KEY}: https://circleci.com/api/v1.1/project/${OOATS_VCS_TYPE}/${OOATS_USERNAME}/${OOATS_PROJECT})
-
+    echo $BUILDS
     $BUILDS | jq -c -r ".[] | {build_num: .build_num, status: .status}"
 
     sleep 10;
