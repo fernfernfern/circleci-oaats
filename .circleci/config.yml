@@ -3,5 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/node
-    steps: 
+    steps:
+      - checkout
       - run: ./ooats.sh
