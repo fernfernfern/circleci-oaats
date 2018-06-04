@@ -29,6 +29,6 @@ do
     BUILDS=$(curl -u ${OOATS_API_KEY}: https://circleci.com/api/v1.1/project/${OOATS_VCS_TYPE}/${OOATS_USERNAME}/${OOATS_PROJECT})
     $BUILDS | jq -c -r ".[] | {build_num: .build_num, status: .status}"
 
-    sleep 25;
+    sleep 20;
 done;
 echo 'Ready!';
